@@ -107,6 +107,95 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+### Error Monitoring Framework
+
+**Timestamp**: 2024-11-05 18:36 IST
+
+**Files Created**:
+- `lib/errorLogger.ts` - Error logging utility with localStorage persistence
+- `components/ErrorMonitor.tsx` - Development error monitoring panel
+
+**Files Modified**:
+- `app/layout.tsx` - Added ErrorMonitor component integration
+
+**Packages Added**:
+- `lucide-react@latest` - Icon library for UI components
+
+**Description**: 
+- Fixed missing `lucide-react` dependency that was causing module resolution errors
+- Implemented comprehensive error monitoring framework for development
+- Created error logger that captures:
+  - Runtime errors and exceptions
+  - Unhandled promise rejections
+  - Console logs (log, error, warn, info)
+  - Network errors (future enhancement)
+- Features:
+  - Automatic error capture and localStorage persistence
+  - Floating button with error count badge
+  - Filterable error panel (by type: error, warning, info, log, network)
+  - Download logs as JSON for sharing
+  - Stack trace viewer
+  - Only visible in development mode
+  - Auto-refresh logs every 2 seconds when panel is open
+- Error logs can be viewed in real-time through the floating button in bottom-right corner
+- Logs persist across page reloads via localStorage
+- Maximum 100 logs retained to prevent memory issues
+
+**Usage**: Click the floating error icon in bottom-right corner (dev mode only) to view all console logs and errors
+
+---
+
+### CSS Syntax Error Fix
+
+**Timestamp**: 2024-11-05 18:41 IST
+
+**Files Modified**:
+- `app/globals.css` - Removed undefined `border-border` class reference
+
+**Description**: 
+- Fixed Tailwind CSS syntax error where `border-border` class was applied to all elements
+- The class referenced an undefined `--border` CSS variable
+- Removed the problematic line `@apply border-border;` from the universal selector
+- Fixed non-existent `primary-950` color class in `.btn-secondary` style
+- Replaced `primary-950` with `primary-900/20` (primary-900 with 20% opacity)
+- These errors were preventing the dev server from compiling
+
+**Errors Fixed**: 
+- `The 'border-border' class does not exist. If 'border-border' is a custom class, make sure it is defined within a @layer directive.`
+- `The 'primary-950' class does not exist` (color only defined up to primary-900)
+
+---
+
+### Error Logger Infinite Loop Fix
+
+**Timestamp**: 2024-11-05 18:45 IST
+
+**Files Modified**:
+- `lib/errorLogger.ts` - Fixed infinite recursion in console interception
+
+**Files Created**:
+- `HOW_TO_ADD_PROJECTS.md` - Comprehensive guide for adding projects
+
+**Description**: 
+- Fixed critical infinite loop bug in error logger
+- The console.log interception was calling `logError()`, which called `console.log()`, creating infinite recursion
+- Created separate `logErrorSilent()` method for internal logging without console output
+- Stored original console methods in `window.__originalConsole` to prevent recursion
+- Console interception now uses `logErrorSilent()` to avoid the loop
+- Public `logError()` method uses original console for development output
+- This fix resolves the "Maximum call stack size exceeded" error
+- Contact page and all other pages now load correctly
+
+**Technical Changes**:
+- Added `logErrorSilent()` private method for internal logging
+- Modified `interceptConsole()` to store original console methods globally
+- Refactored `logError()` to use original console methods for dev output
+- All intercepted console methods now call `logErrorSilent()` instead of `logError()`
+
+**Error Fixed**: `RangeError: Maximum call stack size exceeded` in errorLogger.ts
+
+---
+
 ## Future Updates
 
 All future modifications will be logged here with:

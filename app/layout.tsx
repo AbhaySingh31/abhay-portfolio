@@ -4,6 +4,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider' // next-themes for dark mode
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import ErrorMonitor from '@/components/ErrorMonitor' // Error monitoring for development
 
 const inter = Inter({
   subsets: ['latin'],
@@ -76,6 +77,7 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
+          <ErrorMonitor />
         </ThemeProvider>
       </body>
     </html>
