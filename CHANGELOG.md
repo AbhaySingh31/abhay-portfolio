@@ -413,6 +413,26 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+### Fix Next.js 15 Async Params Requirement
+
+**Timestamp**: 2024-11-06 01:26 IST
+
+**Files Modified**:
+- `app/tutorials/[slug]/page.tsx` - Updated params to be async (Next.js 15 requirement)
+
+**Description**:
+- Fixed TypeScript error: params must be Promise type in Next.js 15
+- Updated `generateMetadata` function to await params
+- Updated `TutorialPage` component to await params
+- Changed type from `{ params: { slug: string } }` to `{ params: Promise<{ slug: string }> }`
+- Added `const { slug } = await params` before using slug
+
+**Error Fixed**: "Type does not satisfy the constraint 'PageProps'" in tutorial detail page
+
+**Deployment Status**: ✅ Build should pass now!
+
+---
+
 ## Future Updates
 
 All future modifications will be logged here with:

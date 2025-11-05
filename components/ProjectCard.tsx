@@ -55,7 +55,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {project.stack.map((tech) => (
             <span
               key={tech}
-              className="rounded-full bg-primary-100 px-3 py-1 text-xs font-medium text-primary-700 dark:bg-primary-950 dark:text-primary-300"
+              className="rounded-full bg-primary-100 px-3 py-1 text-xs font-medium text-primary-700 dark:bg-gray-800 dark:text-primary-400"
             >
               {tech}
             </span>

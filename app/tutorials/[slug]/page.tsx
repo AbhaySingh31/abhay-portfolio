@@ -96,7 +96,7 @@ export default async function TutorialPage({ params }: { params: Promise<{ slug:
                 {tutorial.tags.map((tag: string) => (
                   <span
                     key={tag}
-                    className="rounded-full bg-accent-100 px-3 py-1 text-xs font-medium text-accent-700 dark:bg-accent-950 dark:text-accent-300"
+                    className="rounded-full bg-accent-100 px-3 py-1 text-xs font-medium text-accent-700 dark:bg-gray-800 dark:text-accent-400"
                   >
                     {tag}
                   </span>

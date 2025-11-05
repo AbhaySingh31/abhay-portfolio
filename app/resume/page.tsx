@@ -139,7 +139,7 @@ export default function ResumePage() {
                     {['JavaScript', 'Node.js', 'Java', 'Python', 'PySpark'].map((skill) => (
                       <span
                         key={skill}
-                        className="rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700 dark:bg-primary-950 dark:text-primary-300"
+                        className="rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700 dark:bg-gray-800 dark:text-primary-400"
                       >
                         {skill}
                       </span>
@@ -154,7 +154,7 @@ export default function ResumePage() {
                       (skill) => (
                         <span
                           key={skill}
-                          className="rounded-full bg-accent-100 px-3 py-1 text-sm font-medium text-accent-700 dark:bg-accent-950 dark:text-accent-300"
+                          className="rounded-full bg-accent-100 px-3 py-1 text-sm font-medium text-accent-700 dark:bg-gray-800 dark:text-accent-400"
                         >
                           {skill}
                         </span>
@@ -169,7 +169,7 @@ export default function ResumePage() {
                     {['Spring Boot', 'Angular', 'NestJS', 'Express', 'Swagger', 'Docker', 'Kubernetes'].map((skill) => (
                       <span
                         key={skill}
-                        className="rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700 dark:bg-primary-950 dark:text-primary-300"
+                        className="rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700 dark:bg-gray-800 dark:text-primary-400"
                       >
                         {skill}
                       </span>
@@ -183,7 +183,7 @@ export default function ResumePage() {
                     {['Terraform', 'CloudFormation', 'GitHub Actions', 'Jenkins', 'Splunk', 'CloudWatch', 'Prometheus', 'Grafana'].map((skill) => (
                       <span
                         key={skill}
-                        className="rounded-full bg-accent-100 px-3 py-1 text-sm font-medium text-accent-700 dark:bg-accent-950 dark:text-accent-300"
+                        className="rounded-full bg-accent-100 px-3 py-1 text-sm font-medium text-accent-700 dark:bg-gray-800 dark:text-accent-400"
                       >
                         {skill}
                       </span>

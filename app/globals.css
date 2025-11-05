@@ -58,7 +58,7 @@
   }
 
   .btn-secondary {
-    @apply px-6 py-3 rounded-xl border-2 border-primary-500 text-primary-600 dark:text-primary-400 font-medium transition-all duration-300 hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:scale-105;
+    @apply px-6 py-3 rounded-xl border-2 border-primary-500 bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 font-medium transition-all duration-300 hover:bg-primary-50 dark:hover:bg-gray-700 hover:scale-105;
   }
 
   /* Link styles */
