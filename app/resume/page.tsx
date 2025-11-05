@@ -21,8 +21,7 @@ export default function ResumePage() {
             My <span className="gradient-text">Resume</span>
           </h1>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-600 dark:text-gray-400">
-            AI Engineer passionate about machine learning, deep learning, and building intelligent
-            systems.
+            AWS Certified Solutions Architect with 4.5+ years of experience in backend development, cloud-native applications, and site reliability engineering.
           </p>
           <a
             href="/resume.pdf"
@@ -54,32 +53,35 @@ export default function ResumePage() {
               <div className="card">
                 <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
                   <div>
-                    <h3 className="font-display text-xl font-semibold">AI Engineer</h3>
-                    <p className="text-primary-600 dark:text-primary-400">Tech Company</p>
+                    <h3 className="font-display text-xl font-semibold">Developer</h3>
+                    <p className="text-primary-600 dark:text-primary-400">Tata Consultancy Services</p>
                   </div>
                   <span className="text-sm text-gray-600 dark:text-gray-400">
-                    2023 - Present
+                    Oct 2022 - Present
                   </span>
                 </div>
                 <ul className="list-inside list-disc space-y-1 text-gray-600 dark:text-gray-400">
-                  <li>Developed and deployed machine learning models for production systems</li>
-                  <li>Implemented NLP solutions using transformers and LLMs</li>
-                  <li>Collaborated with cross-functional teams to deliver AI-powered features</li>
+                  <li>Led development of data migration pipelines using Attunity for seamless data transfer between on-premises systems and AWS cloud storage</li>
+                  <li>Developed and maintained scalable ETL pipelines using AWS Glue and Lambda for transforming on-premise data to Redshift via S3</li>
+                  <li>Wrote custom PySpark jobs on Glue for cleaning and transforming semi-structured data (JSON, CSV)</li>
+                  <li>Automated pipeline triggers and error notifications with Step Functions and SNS, cutting manual intervention</li>
+                  <li>Participated in agile sprints and collaborated with teams to enhance pipeline performance</li>
                 </ul>
               </div>
 
               <div className="card">
                 <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
                   <div>
-                    <h3 className="font-display text-xl font-semibold">ML Intern</h3>
-                    <p className="text-primary-600 dark:text-primary-400">Startup Inc.</p>
+                    <h3 className="font-display text-xl font-semibold">System Engineer</h3>
+                    <p className="text-primary-600 dark:text-primary-400">Tata Consultancy Services</p>
                   </div>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">2022 - 2023</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">Apr 2021 - Oct 2022</span>
                 </div>
                 <ul className="list-inside list-disc space-y-1 text-gray-600 dark:text-gray-400">
-                  <li>Built computer vision models for image classification tasks</li>
-                  <li>Optimized model performance and reduced inference time by 40%</li>
-                  <li>Created data pipelines for training and evaluation</li>
+                  <li>Built event-driven workflows using AWS Lambda, Step Functions, SQS, and SNS to support asynchronous backend services</li>
+                  <li>Enhanced Java-based microservices and contributed to API documentation using Swagger</li>
+                  <li>Developed UI components in Angular and integrated with data-backed APIs for live metrics and dashboards</li>
+                  <li>Improved pipeline visibility and reliability by contributing to internal monitoring scripts and alerting setups</li>
                 </ul>
               </div>
             </div>
@@ -103,14 +105,14 @@ export default function ResumePage() {
               <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
                 <div>
                   <h3 className="font-display text-xl font-semibold">
-                    Bachelor of Technology in Computer Science
+                    Bachelor of Engineering (Honours)
                   </h3>
-                  <p className="text-primary-600 dark:text-primary-400">University Name</p>
+                  <p className="text-primary-600 dark:text-primary-400">Gyan Ganga College of Technology, Jabalpur</p>
                 </div>
-                <span className="text-sm text-gray-600 dark:text-gray-400">2019 - 2023</span>
+                <span className="text-sm text-gray-600 dark:text-gray-400">2016 - 2020</span>
               </div>
               <p className="text-gray-600 dark:text-gray-400">
-                Specialized in Artificial Intelligence and Machine Learning. GPA: 3.8/4.0
+                Computer Science Engineering. GPA: 7.62/10
               </p>
             </div>
           </motion.section>
@@ -132,9 +134,9 @@ export default function ResumePage() {
             <div className="card">
               <div className="grid gap-6 md:grid-cols-2">
                 <div>
-                  <h3 className="mb-3 font-display text-lg font-semibold">Languages</h3>
+                  <h3 className="mb-3 font-display text-lg font-semibold">Languages & Backend</h3>
                   <div className="flex flex-wrap gap-2">
-                    {['Python', 'JavaScript', 'TypeScript', 'SQL'].map((skill) => (
+                    {['JavaScript', 'Node.js', 'Java', 'Python', 'PySpark'].map((skill) => (
                       <span
                         key={skill}
                         className="rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700 dark:bg-primary-950 dark:text-primary-300"
@@ -146,9 +148,9 @@ export default function ResumePage() {
                 </div>
 
                 <div>
-                  <h3 className="mb-3 font-display text-lg font-semibold">ML/AI</h3>
+                  <h3 className="mb-3 font-display text-lg font-semibold">Cloud & AWS</h3>
                   <div className="flex flex-wrap gap-2">
-                    {['PyTorch', 'TensorFlow', 'Transformers', 'LangChain', 'OpenAI'].map(
+                    {['Lambda', 'API Gateway', 'DynamoDB', 'S3', 'RDS', 'EC2', 'Step Functions', 'SQS', 'SNS', 'Glue', 'Redshift', 'EMR'].map(
                       (skill) => (
                         <span
                           key={skill}
@@ -162,9 +164,9 @@ export default function ResumePage() {
                 </div>
 
                 <div>
-                  <h3 className="mb-3 font-display text-lg font-semibold">Web Development</h3>
+                  <h3 className="mb-3 font-display text-lg font-semibold">Frameworks & Tools</h3>
                   <div className="flex flex-wrap gap-2">
-                    {['React', 'Next.js', 'Node.js', 'FastAPI', 'TailwindCSS'].map((skill) => (
+                    {['Spring Boot', 'Angular', 'NestJS', 'Express', 'Swagger', 'Docker', 'Kubernetes'].map((skill) => (
                       <span
                         key={skill}
                         className="rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700 dark:bg-primary-950 dark:text-primary-300"
@@ -176,9 +178,9 @@ export default function ResumePage() {
                 </div>
 
                 <div>
-                  <h3 className="mb-3 font-display text-lg font-semibold">Tools & Platforms</h3>
+                  <h3 className="mb-3 font-display text-lg font-semibold">DevOps & Monitoring</h3>
                   <div className="flex flex-wrap gap-2">
-                    {['Git', 'Docker', 'AWS', 'Vercel', 'Jupyter'].map((skill) => (
+                    {['Terraform', 'CloudFormation', 'GitHub Actions', 'Jenkins', 'Splunk', 'CloudWatch', 'Prometheus', 'Grafana'].map((skill) => (
                       <span
                         key={skill}
                         className="rounded-full bg-accent-100 px-3 py-1 text-sm font-medium text-accent-700 dark:bg-accent-950 dark:text-accent-300"
@@ -209,16 +211,30 @@ export default function ResumePage() {
             <div className="space-y-4">
               <div className="card">
                 <h3 className="mb-1 font-display text-lg font-semibold">
-                  Deep Learning Specialization
+                  AWS Certified Solutions Architect – Associate
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Coursera - 2023</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Amazon Web Services</p>
               </div>
 
               <div className="card">
                 <h3 className="mb-1 font-display text-lg font-semibold">
-                  Machine Learning Engineering
+                  AWS Certified Developer – Associate
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Udacity - 2022</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Amazon Web Services</p>
+              </div>
+
+              <div className="card">
+                <h3 className="mb-1 font-display text-lg font-semibold">
+                  AWS Certified Cloud Practitioner
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Amazon Web Services</p>
+              </div>
+
+              <div className="card">
+                <h3 className="mb-1 font-display text-lg font-semibold">
+                  Microsoft Certified: Azure Fundamentals
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Microsoft</p>
               </div>
             </div>
           </motion.section>

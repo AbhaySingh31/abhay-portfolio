@@ -1,13 +1,22 @@
-import { getAllTutorials } from '@/lib/mdx' // MDX utility functions
 import TutorialCard from '@/components/TutorialCard'
+import { supabase } from '@/lib/supabase'
 
 export const metadata = {
   title: 'Tutorials',
-  description: 'Deep dives into AI concepts, tutorials, and learning journal entries.',
+  description: 'Deep dives into cloud architecture, AWS, and backend development.',
 }
 
-export default function TutorialsPage() {
-  const tutorials = getAllTutorials()
+async function getTutorials() {
+  const { data } = await supabase
+    .from('tutorials')
+    .select('*')
+    .order('date', { ascending: false })
+  
+  return data || []
+}
+
+export default async function TutorialsPage() {
+  const tutorials = await getTutorials()
 
   return (
     <div className="relative overflow-hidden">

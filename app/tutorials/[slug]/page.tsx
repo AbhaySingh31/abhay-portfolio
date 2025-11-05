@@ -1,18 +1,46 @@
 import { notFound } from 'next/navigation'
-import { getAllTutorials, getTutorialBySlug } from '@/lib/mdx' // MDX utility functions
-import { MDXRemote } from 'next-mdx-remote/rsc' // Server-side MDX rendering
-import { Calendar, Clock, ArrowLeft } from 'lucide-react' // Icons
+import { Calendar, Clock, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
+import { supabase } from '@/lib/supabase'
 
-export async function generateStaticParams() {
-  const tutorials = getAllTutorials()
-  return tutorials.map((tutorial) => ({
-    slug: tutorial.slug,
-  }))
+// Simple markdown to HTML converter
+function formatMarkdown(markdown: string): string {
+  let html = markdown
+    // Headers
+    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+    // Bold
+    .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+    // Italic
+    .replace(/\*(.*?)\*/gim, '<em>$1</em>')
+    // Links
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+    // Code blocks
+    .replace(/```(\w+)?\n([\s\S]*?)```/gim, '<pre><code>$2</code></pre>')
+    // Inline code
+    .replace(/`([^`]+)`/gim, '<code>$1</code>')
+    // Line breaks
+    .replace(/\n\n/gim, '</p><p>')
+    // Lists
+    .replace(/^\- (.*$)/gim, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>)/gi, '<ul>$1</ul>')
+  
+  return `<p>${html}</p>`
+}
+
+async function getTutorial(slug: string) {
+  const { data } = await supabase
+    .from('tutorials')
+    .select('*')
+    .eq('slug', slug)
+    .single()
+  
+  return data
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const tutorial = getTutorialBySlug(params.slug)
+  const tutorial = await getTutorial(params.slug)
 
   if (!tutorial) {
     return {
@@ -26,8 +54,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default function TutorialPage({ params }: { params: { slug: string } }) {
-  const tutorial = getTutorialBySlug(params.slug)
+export default async function TutorialPage({ params }: { params: { slug: string } }) {
+  const tutorial = await getTutorial(params.slug)
 
   if (!tutorial) {
     notFound()
@@ -63,7 +91,7 @@ export default function TutorialPage({ params }: { params: { slug: string } }) {
             {/* Tags */}
             {tutorial.tags.length > 0 && (
               <div className="mb-4 flex flex-wrap gap-2">
-                {tutorial.tags.map((tag) => (
+                {tutorial.tags.map((tag: string) => (
                   <span
                     key={tag}
                     className="rounded-full bg-accent-100 px-3 py-1 text-xs font-medium text-accent-700 dark:bg-accent-950 dark:text-accent-300"
@@ -93,9 +121,10 @@ export default function TutorialPage({ params }: { params: { slug: string } }) {
           </header>
 
           {/* Content */}
-          <div className="prose prose-lg prose-gray dark:prose-invert max-w-none">
-            <MDXRemote source={tutorial.content} />
-          </div>
+          <div 
+            className="prose prose-lg prose-gray dark:prose-invert max-w-none"
+            dangerouslySetInnerHTML={{ __html: formatMarkdown(tutorial.content) }}
+          />
         </div>
       </article>
     </div>

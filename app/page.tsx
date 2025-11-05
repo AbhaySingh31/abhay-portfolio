@@ -22,7 +22,7 @@ export default function Home() {
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary-200 bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700 dark:border-primary-800 dark:bg-primary-950 dark:text-primary-300"
           >
             <Sparkles className="h-4 w-4" />
-            <span>AI Engineer & Developer</span>
+            <span>AWS Solutions Architect & Developer</span>
           </motion.div>
 
           <motion.h1
@@ -33,7 +33,7 @@ export default function Home() {
           >
             Hi, I'm{' '}
             <span className="gradient-text">
-              Abhay Rajput
+              Abhay Singh
             </span>
           </motion.h1>
 
@@ -43,7 +43,7 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mb-8 text-xl text-gray-600 dark:text-gray-300 sm:text-2xl"
           >
-            Learning AI, building, and sharing.
+            Building cloud-native solutions with AWS.
           </motion.p>
 
           <motion.p
@@ -52,8 +52,9 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mb-12 text-lg text-gray-600 dark:text-gray-400"
           >
-            I'm passionate about artificial intelligence and machine learning. This is my space to
-            document my journey, share projects, and write about what I'm learning along the way.
+            AWS Certified Solutions Architect with 4.5+ years of experience in backend development,
+            serverless architecture, and cloud-native applications. Passionate about building scalable
+            systems and sharing knowledge.
           </motion.p>
 
           <motion.div

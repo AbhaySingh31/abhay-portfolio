@@ -2,11 +2,40 @@
 
 import { motion } from 'framer-motion' // Animation library
 import ProjectCard from '@/components/ProjectCard'
-import projectsData from '@/data/projects.json' // Project data source
+import { supabase } from '@/lib/supabase'
+import { useEffect, useState } from 'react'
 
 export default function ProjectsPage() {
-  const featuredProjects = projectsData.filter((project) => project.featured)
-  const otherProjects = projectsData.filter((project) => !project.featured)
+  const [projects, setProjects] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function loadProjects() {
+      const { data } = await supabase
+        .from('projects')
+        .select('*')
+        .order('featured', { ascending: false })
+        .order('created_at', { ascending: false })
+      
+      setProjects(data || [])
+      setLoading(false)
+    }
+    loadProjects()
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="text-center">
+          <div className="mb-4 h-12 w-12 animate-spin rounded-full border-4 border-primary-500 border-t-transparent"></div>
+          <p className="text-gray-600 dark:text-gray-400">Loading projects...</p>
+        </div>
+      </div>
+    )
+  }
+
+  const featuredProjects = projects.filter((project) => project.featured)
+  const otherProjects = projects.filter((project) => !project.featured)
 
   return (
     <div className="relative overflow-hidden">
