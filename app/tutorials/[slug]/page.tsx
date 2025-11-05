@@ -39,8 +39,9 @@ async function getTutorial(slug: string) {
   return data
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const tutorial = await getTutorial(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const tutorial = await getTutorial(slug)
 
   if (!tutorial) {
     return {
@@ -54,8 +55,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default async function TutorialPage({ params }: { params: { slug: string } }) {
-  const tutorial = await getTutorial(params.slug)
+export default async function TutorialPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const tutorial = await getTutorial(slug)
 
   if (!tutorial) {
     notFound()
