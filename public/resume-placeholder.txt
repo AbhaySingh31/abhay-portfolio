@@ -1,0 +1,4 @@
+PLACEHOLDER: Add your resume.pdf file to the /public directory.
+
+The resume download button in the Resume page links to /resume.pdf
+Place your actual PDF resume at: public/resume.pdf

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ai-chatbot",
+    "title": "AI Chatbot Assistant",
+    "description": "An intelligent chatbot built with GPT-4 and LangChain, featuring context-aware conversations and memory management.",
+    "stack": ["Python", "LangChain", "OpenAI", "FastAPI", "React"],
+    "image": "/images/projects/chatbot.jpg",
+    "link": "https://github.com/abhayrajput/ai-chatbot",
+    "featured": true
+  },
+  {
+    "id": "image-classifier",
+    "title": "Image Classification Model",
+    "description": "Deep learning model for multi-class image classification using PyTorch and transfer learning with ResNet50.",
+    "stack": ["Python", "PyTorch", "Computer Vision", "Flask"],
+    "image": "/images/projects/classifier.jpg",
+    "link": "https://github.com/abhayrajput/image-classifier",
+    "featured": true
+  },
+  {
+    "id": "sentiment-analyzer",
+    "title": "Sentiment Analysis Tool",
+    "description": "NLP-based sentiment analysis tool that processes social media data and provides real-time insights.",
+    "stack": ["Python", "Transformers", "BERT", "Streamlit"],
+    "image": "/images/projects/sentiment.jpg",
+    "link": "https://github.com/abhayrajput/sentiment-analyzer",
+    "featured": false
+  },
+  {
+    "id": "recommendation-system",
+    "title": "Movie Recommendation Engine",
+    "description": "Collaborative filtering recommendation system using matrix factorization and neural networks.",
+    "stack": ["Python", "TensorFlow", "Pandas", "NumPy"],
+    "image": "/images/projects/recommender.jpg",
+    "link": "https://github.com/abhayrajput/movie-recommender",
+    "featured": false
+  }
+]
