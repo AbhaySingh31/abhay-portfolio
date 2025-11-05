@@ -6,7 +6,15 @@ import { supabase } from '@/lib/supabase'
 import { useEffect, useState } from 'react'
 
 export default function ProjectsPage() {
-  const [projects, setProjects] = useState<any[]>([])
+  const [projects, setProjects] = useState<Array<{
+    id: string
+    title: string
+    description: string
+    stack: string[]
+    image: string
+    link: string
+    featured: boolean
+  }>>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

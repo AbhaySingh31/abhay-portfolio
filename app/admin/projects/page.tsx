@@ -103,7 +103,7 @@ export default function AdminProjectsPage() {
     }
   }
 
-  const handleUpdate = (field: keyof Project, value: any) => {
+  const handleUpdate = (field: keyof Project, value: string | string[] | boolean) => {
     if (!editingProject) return
 
     const updated = { ...editingProject, [field]: value }

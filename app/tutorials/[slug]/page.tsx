@@ -5,7 +5,7 @@ import { supabase } from '@/lib/supabase'
 
 // Simple markdown to HTML converter
 function formatMarkdown(markdown: string): string {
-  let html = markdown
+  const html = markdown
     // Headers
     .replace(/^### (.*$)/gim, '<h3>$1</h3>')
     .replace(/^## (.*$)/gim, '<h2>$1</h2>')

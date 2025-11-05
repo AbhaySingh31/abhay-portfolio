@@ -112,7 +112,7 @@ export default function AdminTutorialsPage() {
     }
   }
 
-  const handleUpdate = (field: keyof Tutorial, value: any) => {
+  const handleUpdate = (field: keyof Tutorial, value: string | string[]) => {
     if (!editingTutorial) return
     setEditingTutorial({ ...editingTutorial, [field]: value })
   }
