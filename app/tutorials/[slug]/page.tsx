@@ -93,17 +93,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function TutorialPage({ params }: { params: Promise<{ slug: string }> }) {
+  console.log('[TUTORIAL PAGE] ========== TUTORIAL PAGE COMPONENT CALLED ==========')
   const { slug } = await params
+  console.log('[TUTORIAL PAGE] Slug from params:', slug)
   console.log('[TUTORIAL PAGE] TutorialPage component rendering for slug:', slug)
   
   const tutorial = await getTutorial(slug)
 
   if (!tutorial) {
-    console.log('[TUTORIAL PAGE] Tutorial not found, calling notFound()')
+    console.log('[TUTORIAL PAGE] ❌ Tutorial not found, calling notFound()')
     notFound()
   }
   
-  console.log('[TUTORIAL PAGE] Rendering tutorial:', tutorial.title)
+  console.log('[TUTORIAL PAGE] ✅ Tutorial found! Rendering:', tutorial.title)
+  console.log('[TUTORIAL PAGE] Tutorial data:', JSON.stringify(tutorial, null, 2))
 
   const formattedDate = tutorial.date 
     ? new Date(tutorial.date).toLocaleDateString('en-US', {

@@ -670,6 +670,47 @@ const wordCount = tutorial.content ? tutorial.content.split(/\s+/).length : 0
 
 ---
 
+### Fix Production Routing Issue - Remove Problematic Rewrites
+
+**Timestamp**: 2024-11-06 19:09 IST
+
+**Files Modified**:
+- `vercel.json` - Removed problematic rewrites configuration
+
+**Bug Fixed**:
+- Tutorial and project detail pages redirecting to home page in production
+- Issue: `vercel.json` had a rewrite rule `"source": "/(.*)", "destination": "/"` that was catching ALL routes and redirecting them to the home page
+- This broke Next.js dynamic routing for `/projects/[id]` and `/tutorials/[slug]`
+
+**Root Cause**:
+```json
+"rewrites": [
+  {
+    "source": "/(.*)",
+    "destination": "/"
+  }
+]
+```
+This rewrite rule was intercepting all routes including dynamic routes, causing:
+- `/projects/123` → redirected to `/` (home page)
+- `/tutorials/my-tutorial` → redirected to `/` (home page)
+
+**Solution**:
+- Removed the entire `rewrites` section from `vercel.json`
+- Next.js handles routing automatically - no rewrites needed
+- Kept security headers configuration intact
+
+**Why It Worked Locally But Not in Production**:
+- Local dev server (`npm run dev`) ignores `vercel.json` rewrites
+- Vercel production applies `vercel.json` configuration strictly
+- The rewrite rule only affected production deployments
+
+**Status**: ✅ Fixed - Deploy to see changes
+
+**Note**: After deploying, clicking on project or tutorial cards will now correctly navigate to their detail pages instead of showing the home page.
+
+---
+
 ## Future Updates
 
 All future modifications will be logged here with:
