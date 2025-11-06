@@ -575,6 +575,59 @@ const wordCount = tutorial.content ? tutorial.content.split(/\s+/).length : 0
 
 ---
 
+### Add Dynamic Rendering and Comprehensive Logging for Tutorial Pages
+
+**Timestamp**: 2024-11-06 18:23 IST
+
+**Files Modified**:
+- `app/tutorials/[slug]/page.tsx` - Added dynamic rendering and extensive logging
+
+**Files Created**:
+- `app/tutorials/[slug]/not-found.tsx` - Custom 404 page for tutorials
+
+**Changes Made**:
+
+1. **Force Dynamic Rendering**:
+   ```typescript
+   export const dynamic = 'force-dynamic'
+   export const revalidate = 0
+   ```
+   - Prevents pre-rendering at build time
+   - Forces server-side rendering on each request
+   - Ensures fresh data from Supabase
+
+2. **Comprehensive Logging**:
+   - Added `[TUTORIAL PAGE]` prefix to all logs for easy filtering
+   - Logs environment variable status
+   - Logs Supabase connection details
+   - Logs tutorial data retrieval success/failure
+   - Logs error details (code, message, stack)
+   - Logs component rendering flow
+
+3. **Custom Not Found Page**:
+   - Created dedicated 404 page for tutorials
+   - Helps identify if `notFound()` is being called
+   - Provides better user experience
+
+**Why This Fixes Production**:
+- **Dynamic rendering** ensures page isn't pre-rendered with stale/missing data
+- **Detailed logs** will show exactly what's happening in Vercel logs
+- **Custom 404** will show if tutorial lookup is failing
+
+**How to Debug**:
+1. Deploy these changes
+2. Visit tutorial page in production
+3. Check Vercel Function logs for `[TUTORIAL PAGE]` entries
+4. Logs will show:
+   - If env vars are loaded
+   - If Supabase connection works
+   - If tutorial data is found
+   - Exact error if any
+
+**Status**: ✅ Ready to deploy with debugging
+
+---
+
 ## Future Updates
 
 All future modifications will be logged here with:

@@ -3,6 +3,10 @@ import { Calendar, Clock, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 
+// Force dynamic rendering - don't pre-render at build time
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 // Simple markdown to HTML converter
 function formatMarkdown(markdown: string): string {
   const html = markdown
@@ -30,6 +34,10 @@ function formatMarkdown(markdown: string): string {
 }
 
 async function getTutorial(slug: string) {
+  console.log('[TUTORIAL PAGE] Starting getTutorial for slug:', slug)
+  console.log('[TUTORIAL PAGE] Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL?.substring(0, 30) + '...')
+  console.log('[TUTORIAL PAGE] Has Supabase Key:', !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
+  
   try {
     const { data, error } = await supabase
       .from('tutorials')
@@ -38,27 +46,46 @@ async function getTutorial(slug: string) {
       .single()
     
     if (error) {
-      console.error('Error fetching tutorial:', error)
+      console.error('[TUTORIAL PAGE] Supabase error:', error)
+      console.error('[TUTORIAL PAGE] Error code:', error.code)
+      console.error('[TUTORIAL PAGE] Error message:', error.message)
       return null
+    }
+    
+    console.log('[TUTORIAL PAGE] Tutorial found:', data ? 'YES' : 'NO')
+    if (data) {
+      console.log('[TUTORIAL PAGE] Tutorial title:', data.title)
+      console.log('[TUTORIAL PAGE] Tutorial has content:', !!data.content)
+      console.log('[TUTORIAL PAGE] Tutorial has tags:', !!data.tags)
+      console.log('[TUTORIAL PAGE] Tutorial has date:', !!data.date)
     }
     
     return data
   } catch (error) {
-    console.error('Exception fetching tutorial:', error)
+    console.error('[TUTORIAL PAGE] Exception fetching tutorial:', error)
+    console.error('[TUTORIAL PAGE] Exception type:', error instanceof Error ? error.constructor.name : typeof error)
+    if (error instanceof Error) {
+      console.error('[TUTORIAL PAGE] Exception message:', error.message)
+      console.error('[TUTORIAL PAGE] Exception stack:', error.stack)
+    }
     return null
   }
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
+  console.log('[TUTORIAL PAGE] generateMetadata called for slug:', slug)
+  
   const tutorial = await getTutorial(slug)
 
   if (!tutorial) {
+    console.log('[TUTORIAL PAGE] generateMetadata: Tutorial not found')
     return {
       title: 'Tutorial Not Found',
     }
   }
 
+  console.log('[TUTORIAL PAGE] generateMetadata: Returning metadata for:', tutorial.title)
   return {
     title: tutorial.title,
     description: tutorial.description,
@@ -67,11 +94,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function TutorialPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
+  console.log('[TUTORIAL PAGE] TutorialPage component rendering for slug:', slug)
+  
   const tutorial = await getTutorial(slug)
 
   if (!tutorial) {
+    console.log('[TUTORIAL PAGE] Tutorial not found, calling notFound()')
     notFound()
   }
+  
+  console.log('[TUTORIAL PAGE] Rendering tutorial:', tutorial.title)
 
   const formattedDate = tutorial.date 
     ? new Date(tutorial.date).toLocaleDateString('en-US', {
