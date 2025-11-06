@@ -30,13 +30,23 @@ function formatMarkdown(markdown: string): string {
 }
 
 async function getTutorial(slug: string) {
-  const { data } = await supabase
-    .from('tutorials')
-    .select('*')
-    .eq('slug', slug)
-    .single()
-  
-  return data
+  try {
+    const { data, error } = await supabase
+      .from('tutorials')
+      .select('*')
+      .eq('slug', slug)
+      .single()
+    
+    if (error) {
+      console.error('Error fetching tutorial:', error)
+      return null
+    }
+    
+    return data
+  } catch (error) {
+    console.error('Exception fetching tutorial:', error)
+    return null
+  }
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {

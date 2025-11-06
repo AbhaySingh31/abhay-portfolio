@@ -21,10 +21,11 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <motion.div
-      whileHover={{ y: -5 }}
-      className="card card-hover group h-full overflow-hidden"
-    >
+    <Link href={`/projects/${project.id}`}>
+      <motion.div
+        whileHover={{ y: -5 }}
+        className="card card-hover group h-full overflow-hidden cursor-pointer"
+      >
       {/* Project Image */}
       <div className="relative mb-4 aspect-video overflow-hidden rounded-xl bg-gradient-to-br from-primary-100 to-accent-100 dark:from-primary-950 dark:to-accent-950">
         {project.image && (
@@ -62,17 +63,23 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </div>
 
-        {/* Link */}
-        <Link
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm font-medium text-primary-600 transition-colors hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300"
-        >
-          View Project
-          <ExternalLink className="h-4 w-4" />
-        </Link>
+        {/* Actions */}
+        <div className="flex items-center gap-3">
+          <span className="text-sm font-medium text-primary-600 dark:text-primary-400">
+            View Details →
+          </span>
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex items-center gap-1 text-sm text-gray-600 transition-colors hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400"
+          >
+            <ExternalLink className="h-4 w-4" />
+          </a>
+        </div>
       </div>
     </motion.div>
+    </Link>
   )
 }
