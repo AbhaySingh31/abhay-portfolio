@@ -34,6 +34,4 @@ yarn-error.log*
 next-env.d.ts
 
 
-.env.local.example
-.env.local
-.env.local.example
+
