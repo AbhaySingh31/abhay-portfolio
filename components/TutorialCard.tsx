@@ -10,14 +10,16 @@ interface TutorialCardProps {
 }
 
 export default function TutorialCard({ tutorial }: TutorialCardProps) {
-  const formattedDate = new Date(tutorial.date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+  const formattedDate = tutorial.date
+    ? new Date(tutorial.date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
+    : 'No date'
 
   // Estimate reading time (assuming 200 words per minute)
-  const wordCount = tutorial.content.split(/\s+/).length
+  const wordCount = tutorial.content ? tutorial.content.split(/\s+/).length : 0
   const readingTime = Math.ceil(wordCount / 200)
 
   return (
@@ -28,7 +30,7 @@ export default function TutorialCard({ tutorial }: TutorialCardProps) {
       <Link href={`/tutorials/${tutorial.slug}`} className="block">
         <div className="flex flex-col">
           {/* Tags */}
-          {tutorial.tags.length > 0 && (
+          {tutorial.tags && tutorial.tags.length > 0 && (
             <div className="mb-3 flex flex-wrap gap-2">
               {tutorial.tags.slice(0, 3).map((tag) => (
                 <span

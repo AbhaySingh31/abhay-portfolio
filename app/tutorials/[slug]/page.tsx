@@ -73,13 +73,15 @@ export default async function TutorialPage({ params }: { params: Promise<{ slug:
     notFound()
   }
 
-  const formattedDate = new Date(tutorial.date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+  const formattedDate = tutorial.date 
+    ? new Date(tutorial.date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
+    : 'No date'
 
-  const wordCount = tutorial.content.split(/\s+/).length
+  const wordCount = tutorial.content ? tutorial.content.split(/\s+/).length : 0
   const readingTime = Math.ceil(wordCount / 200)
 
   return (
@@ -101,7 +103,7 @@ export default async function TutorialPage({ params }: { params: Promise<{ slug:
           {/* Header */}
           <header className="mb-8">
             {/* Tags */}
-            {tutorial.tags.length > 0 && (
+            {tutorial.tags && tutorial.tags.length > 0 && (
               <div className="mb-4 flex flex-wrap gap-2">
                 {tutorial.tags.map((tag: string) => (
                   <span
@@ -135,7 +137,7 @@ export default async function TutorialPage({ params }: { params: Promise<{ slug:
           {/* Content */}
           <div 
             className="prose prose-lg prose-gray dark:prose-invert max-w-none"
-            dangerouslySetInnerHTML={{ __html: formatMarkdown(tutorial.content) }}
+            dangerouslySetInnerHTML={{ __html: formatMarkdown(tutorial.content || 'No content available.') }}
           />
         </div>
       </article>
