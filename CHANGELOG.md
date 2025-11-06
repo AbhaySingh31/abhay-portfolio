@@ -628,6 +628,48 @@ const wordCount = tutorial.content ? tutorial.content.split(/\s+/).length : 0
 
 ---
 
+### Fix Nested Anchor Tag Hydration Error in ProjectCard
+
+**Timestamp**: 2024-11-06 18:32 IST
+
+**Files Modified**:
+- `components/ProjectCard.tsx` - Fixed nested `<a>` tag error
+
+**Bug Fixed**:
+- React hydration error: `<a>` cannot contain nested `<a>`
+- External link button was an `<a>` tag inside Link component (which renders as `<a>`)
+
+**Changes**:
+```typescript
+// Before (nested <a> tags - ERROR):
+<Link href={`/projects/${project.id}`}>
+  <a href={project.link}>  {/* ❌ Nested anchor */}
+    <ExternalLink />
+  </a>
+</Link>
+
+// After (button instead):
+<Link href={`/projects/${project.id}`}>
+  <button onClick={(e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    window.open(project.link, '_blank', 'noopener,noreferrer')
+  }}>
+    <ExternalLink />
+  </button>
+</Link>
+```
+
+**Why This Fixes It**:
+- ✅ No nested anchor tags
+- ✅ No hydration errors
+- ✅ External link still works
+- ✅ Proper event handling
+
+**Status**: ✅ Fixed
+
+---
+
 ## Future Updates
 
 All future modifications will be logged here with:

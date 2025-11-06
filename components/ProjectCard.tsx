@@ -68,15 +68,17 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <span className="text-sm font-medium text-primary-600 dark:text-primary-400">
             View Details →
           </span>
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
+          <button
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              window.open(project.link, '_blank', 'noopener,noreferrer')
+            }}
             className="inline-flex items-center gap-1 text-sm text-gray-600 transition-colors hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400"
+            aria-label="Open project link"
           >
             <ExternalLink className="h-4 w-4" />
-          </a>
+          </button>
         </div>
       </div>
     </motion.div>
